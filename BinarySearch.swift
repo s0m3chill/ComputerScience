@@ -7,6 +7,7 @@ public class BinarySearch {
         var left = 0, right = sortedArray.count
         
         while (right - left > 1) {
+            // https://ai.googleblog.com/2006/06/extra-extra-read-all-about-it-nearly.html
             let mid = left + (right - left) / 2
             
             if sortedArray[mid] > target {
