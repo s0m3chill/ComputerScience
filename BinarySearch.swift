@@ -3,21 +3,25 @@ import Foundation
 
 public class BinarySearch {
     
-    func binarySearch(sortedArray: [Int], target: Int) -> Int {
-        var left = 0, right = sortedArray.count
+    func search(_ nums: [Int], _ target: Int) -> Int {
+        var sortedArray = nums
+        var left = 0
+        var right = sortedArray.count - 1
         
-        while (right - left > 1) {
-            // https://ai.googleblog.com/2006/06/extra-extra-read-all-about-it-nearly.html
-            let mid = left + (right - left) / 2
-            
-            if sortedArray[mid] > target {
-                right = mid
+        while left <= right {
+// https://ai.googleblog.com/2006/06/extra-extra-read-all-about-it-nearly.html
+            let middle = left + ((right - left) / 2)
+            if sortedArray[middle] == target {
+                return middle
+            }
+            if sortedArray[middle] < target {
+                left = middle + 1
             } else {
-                left = mid
+                right = middle - 1
             }
         }
         
-        return sortedArray[left] == target ? left : -1
+        return -1
     }
     
 }
@@ -26,4 +30,4 @@ public class BinarySearch {
 ///
 ///
 let solution = BinarySearch()
-let targetIndex = solution.binarySearch(sortedArray: [2,4,7,8,10,15], target: 4)
+let targetIndex = solution.search([2,4,7,8,10,15], 4)
